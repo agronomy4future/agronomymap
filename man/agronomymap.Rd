@@ -2,12 +2,12 @@
 % Please edit documentation in R/agronomymap.R
 \name{agronomymap}
 \alias{agronomymap}
-\title{Field Heatmap Visualization for Agronomic Trials}
+\title{Spatial Heatmap Visualization for Agronomic Grid-based Field Layouts Trials}
 \usage{
 agronomymap(
   data,
-  map = c("Column", "Row"),
-  variable = "SOC",
+  map = c("x", "y"),
+  variable = "Yield",
   spacing = 5,
   grid_res = 70,
   point_size = 1,
@@ -34,7 +34,7 @@ agronomymap(
 (e.g., "Column", "Row") and one numeric response variable.}
 
 \item{map}{A character vector of length 2 giving the column names that
-represent the X and Y grid positions (e.g., \code{c("Column","Row")}).}
+represent the X and Y grid positions (e.g., \code{c("Row","Column")}).}
 
 \item{variable}{Name of the numeric variable to map as a heat surface.}
 
@@ -115,13 +115,13 @@ library(agronomymap)
 
 # Basic field heatmap
 agronomymap(df,
-            map= c("Column","Row"),
+            map= c("Row","Column"),
             variable= "SOC")
 
 # With styled format
 agronomymap(
  data= df,
- map= c("Column","Row"),
+ map= c("Row", "Column"),
  variable= "SOC",
  # fill scale
  grid_res = 100,
@@ -147,5 +147,6 @@ agronomymap(
  axis_units= TRUE
 )
 *Github: https://github.com/agronomy4future/agronomymap
+*Website: https://agronomy4future.com/archives/24921
 }
 }

@@ -1,4 +1,4 @@
-#' Field Heatmap Visualization for Agronomic Trials
+#' Spatial Heatmap Visualization for Agronomic Grid-based Field Layouts Trials
 #'
 #' Generates an interpolated spatial heatmap of agronomic field trial data
 #' using row/column coordinates and a chosen measurement variable (e.g., SOC,
@@ -8,7 +8,7 @@
 #' @param data A data frame containing at least two coordinate columns
 #'   (e.g., "Column", "Row") and one numeric response variable.
 #' @param map A character vector of length 2 giving the column names that
-#'   represent the X and Y grid positions (e.g., `c("Column","Row")`).
+#'   represent the X and Y grid positions (e.g., `c("Row","Column")`).
 #' @param variable Name of the numeric variable to map as a heat surface.
 #' @param spacing Numeric distance between grid cells (default: `5`). Used
 #'   to scale plotting coordinates.
@@ -64,13 +64,13 @@
 #'
 #' # Basic field heatmap
 #' agronomymap(df,
-#'             map= c("Column","Row"),
+#'             map= c("Row","Column"),
 #'             variable= "SOC")
 #'
 #' # With styled format
 #' agronomymap(
 #'  data= df,
-#'  map= c("Column","Row"),
+#'  map= c("Row", "Column"),
 #'  variable= "SOC",
 #'  # fill scale
 #'  grid_res = 100,
@@ -96,10 +96,11 @@
 #'  axis_units= TRUE
 #')
 #'*Github: https://github.com/agronomy4future/agronomymap
+#'*Website: https://agronomy4future.com/archives/24921
 #' }
 agronomymap = function(data,
-                       map = c("Column", "Row"),
-                       variable = "SOC",
+                       map = c("x", "y"),
+                       variable = "Yield",
                        spacing = 5,
                        grid_res = 70,
                        point_size = 1,
@@ -142,8 +143,8 @@ agronomymap = function(data,
   # map = c("Column","Row") gives a tall rectangle:
   # - Row (10) on x-axis
   # - Column (20) on y-axis
-  x_name = map[2]  # "Row"
-  y_name = map[1]  # "Column"
+  x_name = map[1]  # "Row"
+  y_name = map[2]  # "Column"
   v_name = variable
 
   x_raw = as.numeric(data[[x_name]])
